@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/links/index.html</loc>
+    
+    <lastmod>2019-12-05T10:56:32.077Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/uncategorized/CSP-J2/</loc>
     
     <lastmod>2019-11-23T12:30:24.697Z</lastmod>

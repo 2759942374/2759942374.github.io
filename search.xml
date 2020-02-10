@@ -141,7 +141,7 @@
   <entry>
     <title>题解 CF157A 【Game Outcome】</title>
     <url>/uncategorized/solution-cf157a/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>题目其实还好，<del>但是数据水呀！</del>，$1\le n\le30$ , 别说$n^{2}$了，就是$n^{3}$都可以过！</p>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>题目其实还好，<del>但是数据水呀！</del>， $1\le n\le30$  , 别说 $n^{2}$ 了，就是 $n^{3}$ 都可以过！</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>按照题目要求，先读入一个矩阵，然后，双重循环枚举一个数。</p>
 <p>将这个数的纵和列算出来，比较一下，如果纵的和大于列的和，那么ans++，最后输出ans。</p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>Code :</p>

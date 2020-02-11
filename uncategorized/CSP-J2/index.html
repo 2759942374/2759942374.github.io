@@ -517,7 +517,6 @@
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>模拟+暴力</p>
 <p>先用一个Len记录字符串长度 length(),然后在用循环统计。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> S1;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;S1;<span class="comment">//读入</span></span><br><span class="line">	<span class="keyword">int</span> Len,ans;<span class="comment">//Len记录长度，ans记录一的个数。</span></span><br><span class="line">	Len=S1.length();<span class="comment">//长度测量</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=Len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (S1[i]==<span class="string">'1'</span>) ans++;</span><br><span class="line">	&#125;<span class="comment">//循环统计</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//输出</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>过了样例。</p>
 <p>于是，我兴高采烈地交上去。</p>
 <p>…</p>
@@ -544,8 +543,6 @@
 <p>题目大意</p>
 <blockquote>
 <p>就是现在要搭乘地铁和公交车，那么搭乘一次地铁之后有一张优惠券，有效期为45分。在有效期内可以消耗这张优惠票，免费搭乘一次票价不超过地铁票价的公交车。在有效期内指开始乘公交车的时间与开始乘地铁的时间之差小于等于 45 分钟。</p>
-</blockquote>
-<blockquote>
 <p>那么还有条件，优惠券可以积累，可以使用优惠券一定用优惠券，如果有多种优惠券，先使用最早的。</p>
 </blockquote>
 <h2 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h2><p>其实题目很简单。</p>
@@ -555,7 +552,6 @@
 <p>再利用一个数字记录优惠券的数量。</p>
 <p>看到这里你应该会写了吧。但是别急<del>因为这个思路不能满分</del>。</p>
 <h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;//头文件不提了</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 100005<span class="comment">//宏定义</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,sj2[INF],yu2[INF],r,ans=<span class="number">0</span>;<span class="comment">//r记录有几张优惠券，sj2代表第几张优惠券的时间，yu2代表第几张优惠券的金额，ans代表用的钱数。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> pd,yu,sj;<span class="comment">//pd变量是用来判断是公交还是地铁，yu代表几元，sj代表时间</span></span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;pd&gt;&gt;yu&gt;&gt;sj;</span><br><span class="line">		<span class="keyword">if</span> (!pd) &#123;<span class="comment">//如果是地铁那么处理开始</span></span><br><span class="line">		    r++;<span class="comment">//优惠券+1</span></span><br><span class="line">			yu2[r]=yu;<span class="comment">//记录第r张优惠券有几元</span></span><br><span class="line">			sj2[r]=sj;<span class="comment">//记录第r张优惠券是什么时间</span></span><br><span class="line">			ans+=yu;<span class="comment">//然后加上花的钱</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">bool</span> flag=<span class="number">1</span>;<span class="comment">//判断能否用优惠券</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=r; j++) &#123;<span class="comment">//从一查找到r</span></span><br><span class="line">				<span class="keyword">if</span> (sj-sj2[j]&gt;<span class="number">45</span>) <span class="keyword">continue</span>;<span class="comment">//如果时间超过了sj那么continue</span></span><br><span class="line">				<span class="keyword">if</span> (yu&lt;=yu2[j]) &#123;<span class="comment">//如果金额在yu里面那么可以用</span></span><br><span class="line">					yu2[j]=<span class="number">-1</span>;<span class="comment">//用过一次就不能在用</span></span><br><span class="line">					flag=<span class="number">0</span>;</span><br><span class="line">					<span class="keyword">break</span>;<span class="comment">//跳出循环</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (flag) ans+=yu;<span class="comment">//如果不能用那么金额加上它</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//输出总金额</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>好了我做完了，于是，我兴高采烈地交了上去。</p>
 <p>…</p>
 <p>TLE TLE TLE</p>
@@ -1481,6 +1477,23 @@
   
 
   
-  <script src="/live2d-widget/autoload.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/live2d-widget/autoload.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

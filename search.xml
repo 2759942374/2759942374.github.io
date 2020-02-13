@@ -88,9 +88,45 @@
       </tags>
   </entry>
   <entry>
+    <title>题解 P4136 【谁能赢呢？】</title>
+    <url>/uncategorized/solution-p4136/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一开始看到这道题目的时候，以为是一道模拟，结果看数据范围，</p>
+<p><script type="math/tex">o \big( n^2  \big)</script>肯定是过不了的，更何况还有神奇的多组数据。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>于是，我就开始思考。那么在图画上模拟一遍吧！</p>
+<p>A 代表 小明 ，B 代表 小红 ，图画的可能不太好，还请各位大佬谅解，首先模拟一下 <script type="math/tex">2 \times 2</script>的格子吧。</p>
+<p><img src="http://cstdios.cf/tc/data/QQ%E5%9B%BE%E7%89%8720200211105000.png" alt></p>
+<p>石头，s 代表石头在左上角：</p>
+<p><img src="https://s2.ax1x.com/2020/02/13/1LJzAU.png" alt="1LJzAU.png"></p>
+<p>然后开始搬石头，小明先来：</p>
+<p><img src="https://s2.ax1x.com/2020/02/13/1LYaCQ.png" alt="1LYaCQ.png"></p>
+<p>小明选择搬到了 1,1 的地方，由于是每个人都会最优策略所以小红：</p>
+<p><img src="https://s2.ax1x.com/2020/02/13/1LY5K1.png" alt="1LY5K1.png"></p>
+<p>然后又是小明：</p>
+<p><img src="https://s2.ax1x.com/2020/02/13/1Ltrzd.png" alt="1Ltrzd.png"></p>
+<p>很显而易见，小明赢了！</p>
+<p>那么我们来分析一下。</p>
+<p>小明走一步，小红走一步，然后又是小明走一步。</p>
+<p>石头也占一个格子。</p>
+<p>你发现了吗？<script type="math/tex">n \times n -1</script> 如果是个奇数那么就是小明到最后一格，也就是小红输了。</p>
+<p>如果是个偶数那么就是小红到最后一格，也就是小明输了。</p>
+<p>先别急着写代码，因为还可以优化。</p>
+<p><script type="math/tex">n \times n -1</script> 如果是奇数那么就是小红输了，也就是 <script type="math/tex">n \times n</script> 如果是偶数那么就是小红输了。</p>
+<p>我们可以根据某个定理知道，<script type="math/tex">n \times n</script> 和 <script type="math/tex">n</script> 的奇偶性不变，所以可以得出：</p>
+<p><strong>如果 n 是偶数那么小明赢，反之就是小红赢了！</strong></p>
+<p>结论得出来了，代码就很好写了。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="comment">//定义变量+头文件，不说了。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        n=<span class="number">1</span>;<span class="comment">//这里非常要注意，n必须有个值否则进入不了循环。</span></span><br><span class="line">        <span class="keyword">while</span> (n)<span class="comment">//循环开始</span></span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">                <span class="keyword">if</span> (n==<span class="number">0</span>) <span class="keyword">break</span>;<span class="comment">//如果n=0那么退出</span></span><br><span class="line">                <span class="keyword">if</span> (n%<span class="number">2</span>==<span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">"Alice\n"</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"Bob\n"</span>);<span class="comment">//这个判断看上面的结论</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>我这篇题解如果有错误，那么请在评论区里留言，我将会很感谢反映的人。</p>
+<p>最后，宣传一下我的两个blog <a href="https://www.luogu.com.cn/blog/dgt/solution-p4136" target="_blank" rel="noopener">洛谷的</a>，<a href="http://localhost:4000/uncategorized/solution-p4136/" target="_blank" rel="noopener">自己的</a>，记得来玩哦！</p>
+<p><strong>谢谢观赏！</strong></p>
+]]></content>
+      <tags>
+        <tag>基础算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>高精度</title>
     <url>/uncategorized/%E9%AB%98%E7%B2%BE%E5%BA%A6/</url>
-    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>高精度作为<script type="math/tex">n^{2}</script>c++里面的一种基础算法，学好它也是必然的，有很多人说高精度只要会背代码就行了。</p>
+    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>高精度作为c++里面的一种基础算法，学好它也是必然的，有很多人说高精度只要会背代码就行了。</p>
 <p>我认为只要理解了高精度，就会觉得它还是简单的。</p>
 <h2 id="什么是高精度"><a href="#什么是高精度" class="headerlink" title="什么是高精度"></a>什么是高精度</h2><p>高精度是一种数据范围超级大的数，然后进行相加，相减，相乘，相除…的操作。</p>
 <h1 id="高精度加法"><a href="#高精度加法" class="headerlink" title="高精度加法"></a>高精度加法</h1><h2 id="读入"><a href="#读入" class="headerlink" title="读入"></a>读入</h2><p>首先我们要考虑一个问题，就是怎么读入数据范围超级大的数。想想看，是不是<strong>字符串</strong>。</p>

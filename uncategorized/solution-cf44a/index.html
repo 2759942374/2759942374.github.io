@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="fzx&#39;s blog">
 <meta property="og:description" content="前言雾( 为什么要把它们看成两个字符串？ 不就多了个空格吗？ 这题目其实可以把一行当成一个字符串，反正空格又不会变化。 分析这题目其实 map 可以过，如果不知道 map 那么请自行百度。 STL大法就是好！ Code123456789101112131415161718192021222324252627#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;g">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-19T04:27:14.918Z">
+<meta property="og:updated_time" content="2020-02-19T04:30:40.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="题解 CF44A 【Indian Summer】">
 <meta name="twitter:description" content="前言雾( 为什么要把它们看成两个字符串？ 不就多了个空格吗？ 这题目其实可以把一行当成一个字符串，反正空格又不会变化。 分析这题目其实 map 可以过，如果不知道 map 那么请自行百度。 STL大法就是好！ Code123456789101112131415161718192021222324252627#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;g">
@@ -423,7 +423,7 @@
                 
               
 
-              <time title="创建时间：2020-02-19 12:26:30 / 修改时间：12:27:14" itemprop="dateCreated datePublished" datetime="2020-02-19T12:26:30+08:00">2020-02-19</time>
+              <time title="创建时间：2020-02-19 12:26:30 / 修改时间：12:30:40" itemprop="dateCreated datePublished" datetime="2020-02-19T12:26:30+08:00">2020-02-19</time>
             
 
             
@@ -462,7 +462,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">8.9k</span>
+                <span title="本文字数">9k</span>
               
 
               
@@ -506,7 +506,7 @@
 <p>hash 就是将一个字符串改为一串数字的神奇方法，重点是：它的速度可能比 map 还要快！</p>
 <h2 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> Mod=<span class="number">100000007</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="built_in">string</span> s1;</span><br><span class="line"><span class="keyword">bool</span> s[Mod+<span class="number">10</span>];</span><br><span class="line"><span class="comment">// Mod 限制长度取模，s为 hash 表</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Hash</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans0=<span class="number">1</span>,len=s1.size();<span class="comment">//ans表示算出来的 hash 值，注意要开 long long 因为计算过程中，有可能会爆 int 。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ans0=(ans0*<span class="number">2</span>+(s1[i]+<span class="string">'F'</span>)*<span class="number">233</span>)%Mod;</span><br><span class="line">     <span class="comment">// hash 搅拌机开始，如果不理解 hash 的请自行百度。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans0%Mod;<span class="comment">//最后取个模。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	getline(<span class="built_in">cin</span>,s1);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		getline(<span class="built_in">cin</span>,s1);</span><br><span class="line">		<span class="keyword">if</span> (!s[Hash()]) &#123;</span><br><span class="line">			s[Hash()]=<span class="number">1</span>;</span><br><span class="line">			ans++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   <span class="comment">//上面的主程序也不多说。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>我这篇题解如果有错误，那么请在评论区里留言，我将会很感谢反映的人。</p>
-<p>最后，宣传一下我的两个 blog <a href="https://www.luogu.com.cn/blog/dgt/solution-cf44a" target="_blank" rel="noopener">洛谷的</a> ，自己的，记得来玩哦！</p>
+<p>最后，宣传一下我的两个 blog <a href="https://www.luogu.com.cn/blog/dgt/solution-cf44a" target="_blank" rel="noopener">洛谷的</a> ，<a href="http://cstdios.cf/uncategorized/solution-cf44a/" target="_blank" rel="noopener">自己的</a>，记得来玩哦！</p>
 <p><strong>谢谢观赏！</strong></p>
 
       

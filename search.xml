@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>题解 P5788 【【模板】单调栈】</title>
+    <url>/uncategorized/solution-p5788/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>单调栈的模板题目，本人是手写单调栈。</p>
+<h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><p>首先了解一下什么是单调栈吧！</p>
+<p>单调栈就是使栈内元素单调递增或者单调递减的栈，单调栈也只能在栈顶操作。</p>
+<p>我们先来模拟一遍吧！</p>
+<p>做一个比喻，比方说：有个集训队招人，一个数代表了一个选手的能力值，先进来的选手年龄会比较大，后面的选手年龄比较小，但是这个集训队没有人数限制，那么如果遇到一个比你小还比你强的人那么准备退役吧。</p>
+<p>比如有 5 个能力值分别是：</p>
+<p>1 7 5 6 3</p>
+<p>要加进来这个单调栈。</p>
+<p>首先是 1 也就是 选手1 ，那么集训队没有人和他比较所以进入集训队。</p>
+<p>单调栈的情况：1 。</p>
+<p>然后是 7  也就是 选手2 ，那么我们可以发现，选手2 比 选手1 要小，并且 选手2 的能力比 选手1 要强，那么 选手1 留着也没啥用，淘汰！<del>好残酷呀！</del></p>
+<p>单调栈的情况：7 。</p>
+<p>然后是 5 选手3 ，选手3 比 选手2 年龄要小，但是 选手3 的能力没有 选手2 强，那么 选手3 招进集训队。</p>
+<p>单调栈的情况：7 5 。</p>
+<p>那么接下来是 6 选手4 ，选手4 比 选手3 年龄要小，比他还要强， 选手3 淘汰！往后比较，发现 选手2 虽然比 选手4 要大，但是他能力很强！所以不会被淘汰，将 选手4 招进集训队。</p>
+<p>单调栈的情况：7 6 。</p>
+<p>最后是 3 选手5 ，选手5 比 选手4 要小，但是 选手4 的能力比 选手5 要强，所以 选手4 必定也比不过 选手2 ，但由于 选手5 小所以不淘汰他。</p>
+<p>单调栈的情况：7 6 3 。</p>
+<p>通过这个模拟我们发现，<del>如果你很强，就算你年龄大也不会被淘汰</del>，其实不是这样，在单调队列(比单调栈高级的东西)里面你就算再强也终究有时候会退役的，所以好好珍惜吧！</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>刚刚解析完了单调栈，那么，现在开始分析一下这道题目吧！</p>
+<p>这道题目就是说往右边看，找出第一个(能力)大于你的数(选手)。</p>
+<p>不妨把它反过来，从最后一个开始入单调栈。</p>
+<p>如果说没有比它小的那么就是输出 0 。</p>
+<p>细节看代码吧！</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 3000005</span></span><br><span class="line"><span class="comment">//头文件+预处理名。</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,a[Inf],q[INF],r,f[INF];</span><br><span class="line"><span class="comment">//定义变量，其中a数组表示输入的数，q数组表示存下标的单调栈，f数组是存结果。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">   <span class="comment">//上面是读入。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=n; i&gt;=<span class="number">1</span>; i--) &#123;</span><br><span class="line">    <span class="comment">//从最后开始枚举。</span></span><br><span class="line">		<span class="keyword">while</span> (a[i]&gt;=a[q[r]] &amp;&amp; r&gt;<span class="number">0</span>) r--;</span><br><span class="line">    <span class="comment">//如果说它找到了比矮高的人并且不是最后，那么将那个矮的人弹掉，毕竟后面也不会有人看到它了，因为如果看到它的话那么必定可以看到比它前面的还比它高的。</span></span><br><span class="line">		f[i]=q[r];</span><br><span class="line">      <span class="comment">//存结果，因为要正向输出。</span></span><br><span class="line">		q[++r]=i;</span><br><span class="line">     <span class="comment">//将它入栈。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="built_in">printf</span>(<span class="string">"%d "</span>,f[i]);</span><br><span class="line">   <span class="comment">//最后正着输出。</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>我这篇题解如果有错误，那么请在评论区里留言，我将会很感谢反映的人。</p>
+<p>最后，宣传一下我的两个blog <a href="https://www.luogu.com.cn/blog/dgt/solution-p5788" target="_blank" rel="noopener">洛谷的</a>，<a href="https://cstdios.cf/uncategorized/solution-p5788/" target="_blank" rel="noopener">自己的</a>，记得来玩哦！</p>
+<p><strong>谢谢观赏！</strong></p>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>题解 CF44A 【Indian Summer】</title>
+    <url>/uncategorized/solution-cf44a/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>雾( 为什么要把它们看成两个字符串？</p>
+<p>不就多了个空格吗？</p>
+<p>这题目其实可以把一行当成一个字符串，反正空格又不会变化。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这题目其实 map 可以过，如果不知道 map 那么请自行百度。</p>
+<p>STL大法就是好！</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt; </span></span></span><br><span class="line"><span class="comment">//注意要加上头文件 #include &lt;map&gt; ！</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">map</span> &lt;<span class="built_in">string</span>,<span class="keyword">bool</span>&gt; s;</span><br><span class="line"><span class="comment">// map 定义为：下标是字符串，里面存的是布尔类型的值。</span></span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="built_in">string</span> s1;</span><br><span class="line"><span class="comment">//其它的变量不多说。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">   <span class="comment">//读入 n 。</span></span><br><span class="line">	getline(<span class="built_in">cin</span>,s1);</span><br><span class="line">   <span class="comment">//至关重要，如果说你前面读入了一个n，那么有个换行符还没有读入。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		getline(<span class="built_in">cin</span>,s1);</span><br><span class="line">        <span class="comment">//真正开始读入字符串。</span></span><br><span class="line">		<span class="keyword">if</span> (!s[s1]) &#123;<span class="comment">//如果没有遇到过。</span></span><br><span class="line">			s[s1]=<span class="number">1</span>;<span class="comment">//那么标记为真，并且答案+1。</span></span><br><span class="line">			ans++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">   <span class="comment">//输出答案</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分析2"><a href="#分析2" class="headerlink" title="分析2"></a>分析2</h2><p>以为这样子就结束了吗？没有，其实还有另一种做法： hash (哈希)！</p>
+<p>hash 就是将一个字符串改为一串数字的神奇方法，重点是：它的速度可能比 map 还要快！</p>
+<h2 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> Mod=<span class="number">100000007</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="built_in">string</span> s1;</span><br><span class="line"><span class="keyword">bool</span> s[Mod+<span class="number">10</span>];</span><br><span class="line"><span class="comment">// Mod 限制长度取模，s为 hash 表</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Hash</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans0=<span class="number">1</span>,len=s1.size();<span class="comment">//ans表示算出来的 hash 值，注意要开 long long 因为计算过程中，有可能会爆 int 。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ans0=(ans0*<span class="number">2</span>+(s1[i]+<span class="string">'F'</span>)*<span class="number">233</span>)%Mod;</span><br><span class="line">     <span class="comment">// hash 搅拌机开始，如果不理解 hash 的请自行百度。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans0%Mod;<span class="comment">//最后取个模。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	getline(<span class="built_in">cin</span>,s1);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		getline(<span class="built_in">cin</span>,s1);</span><br><span class="line">		<span class="keyword">if</span> (!s[Hash()]) &#123;</span><br><span class="line">			s[Hash()]=<span class="number">1</span>;</span><br><span class="line">			ans++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   <span class="comment">//上面的主程序也不多说。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>我这篇题解如果有错误，那么请在评论区里留言，我将会很感谢反映的人。</p>
+<p>最后，宣传一下我的两个 blog <a href="https://www.luogu.com.cn/blog/dgt/solution-cf44a" target="_blank" rel="noopener">洛谷的</a> ，<a href="http://cstdios.cf/uncategorized/solution-cf44a/" target="_blank" rel="noopener">自己的</a>，记得来玩哦！</p>
+<p><strong>谢谢观赏！</strong></p>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>题解 CF977A 【Wrong Subtraction】</title>
+    <url>/uncategorized/solution-cf977a/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这题一看是一道模拟题，适合新手练习。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>整数解决会稍简单一点。</p>
+<p>首先，将n和k读入，然后k次循环 (while和for都可解决)。</p>
+<p>然后一个判断：按照题目要求<code>对于每一次操作，如果 n 的最后一位数字不为零，则将它减1，否则将它除以10（即删除最后一位数字）。</code></p>
+<p>即可写出判断：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (n%<span class="number">10</span>) n--;</span><br><span class="line"><span class="keyword">else</span> n/=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>然后输出n (我是在n本身上解决)。</p>
+<p>接下来呢？还用问，上代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="comment">//头文件不多说</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,k;</span><br><span class="line"><span class="comment">//定义变量n和k</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;n,&amp;k);</span><br><span class="line">   <span class="comment">//读入n和k，scanf等同于cin，但是scanf比cin快一点。</span></span><br><span class="line">	<span class="keyword">while</span> (k--) </span><br><span class="line">	&#123;</span><br><span class="line">    <span class="comment">//开始循环</span></span><br><span class="line">		<span class="keyword">if</span> (n%<span class="number">10</span>) n--;</span><br><span class="line">		<span class="keyword">else</span> n/=<span class="number">10</span>;</span><br><span class="line">    <span class="comment">//判断在上面已经讲过了，这里不多说。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,n);</span><br><span class="line">    <span class="comment">//输出n，等同于cout，但是printf比cout快一点。</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后就是字符数组的解法：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> n[<span class="number">15</span>];</span><br><span class="line"><span class="keyword">int</span> k;</span><br><span class="line"><span class="comment">//定义字符数组n和整数类型变量k。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,&amp;n);</span><br><span class="line">    <span class="comment">//%s 可以读入字符数组，但不能读入string类型。</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</span><br><span class="line">	<span class="keyword">int</span> len=<span class="built_in">strlen</span>(n);</span><br><span class="line">    <span class="comment">//测量长度，strlen可以测量字符数组的长度。</span></span><br><span class="line">	<span class="keyword">while</span> (k--) </span><br><span class="line">	&#123;</span><br><span class="line">    <span class="comment">//开始循环</span></span><br><span class="line">		<span class="keyword">if</span> (n[len<span class="number">-1</span>]!=<span class="string">'0'</span>) n[len<span class="number">-1</span>]--;</span><br><span class="line">		<span class="keyword">else</span> len--;</span><br><span class="line">     <span class="comment">//类似于上面整数解法的判断，但是注意一点(n[len-1]!='0'，单引号不能忘。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%c"</span>,n[i]);</span><br><span class="line">    <span class="comment">//然后一个一个输出，这样可以配合上面的len--删除方式。</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有的人会说，如果我想读入string类型，用什么呢？</p>
+<p>我这里告诉你，c++只能用cin读入，cout输出。</p>
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>我这篇题解如果有错误，那么请在评论区里留言，我将会很感谢反映的人。</p>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSP-J2</title>
     <url>/uncategorized/CSP-J2/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天写的是关于CSP-J2的一些事情。</p>
@@ -72,6 +156,42 @@
       </tags>
   </entry>
   <entry>
+    <title>题解 P4136 【谁能赢呢？】</title>
+    <url>/uncategorized/solution-p4136/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一开始看到这道题目的时候，以为是一道模拟，结果看数据范围，<br>$$o \big( n^2  \big)$$肯定是过不了的，更何况还有神奇的多组数据。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>于是，我就开始思考。那么在图画上模拟一遍吧！</p>
+<p>A 代表 小明 ，B 代表 小红 ，图画的可能不太好，还请各位大佬谅解，首先模拟一下 $$2 \times 2$$的格子吧。</p>
+<p><img src="http://cstdios.cf/tc/data/QQ%E5%9B%BE%E7%89%8720200211105000.png" alt></p>
+<p>石头，s 代表石头在左上角：</p>
+<p><img src="https://s2.ax1x.com/2020/02/13/1LJzAU.png" alt="1LJzAU.png"></p>
+<p>然后开始搬石头，小明先来：</p>
+<p><img src="https://s2.ax1x.com/2020/02/13/1LYaCQ.png" alt="1LYaCQ.png"></p>
+<p>小明选择搬到了 1,1 的地方，由于是每个人都会最优策略所以小红：</p>
+<p><img src="https://s2.ax1x.com/2020/02/13/1LY5K1.png" alt="1LY5K1.png"></p>
+<p>然后又是小明：</p>
+<p><img src="https://s2.ax1x.com/2020/02/13/1Ltrzd.png" alt="1Ltrzd.png"></p>
+<p>很显而易见，小明赢了！</p>
+<p>那么我们来分析一下。</p>
+<p>小明走一步，小红走一步，然后又是小明走一步。</p>
+<p>石头也占一个格子。</p>
+<p>你发现了吗？$$n \times n -1$$ 如果是个奇数那么就是小明到最后一格，也就是小红输了。</p>
+<p>如果是个偶数那么就是小红到最后一格，也就是小明输了。</p>
+<p>先别急着写代码，因为还可以优化。</p>
+<p>$$n \times n -1$$ 如果是奇数那么就是小红输了，也就是 $$n \times n$$ 如果是偶数那么就是小红输了。</p>
+<p>我们可以根据某个定理知道，$$n \times n$$ 和 $$n$$ 的奇偶性不变，所以可以得出：</p>
+<p><strong>如果 n 是偶数那么小明赢，反之就是小红赢了！</strong></p>
+<p>结论得出来了，代码就很好写了。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="comment">//定义变量+头文件，不说了。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        n=<span class="number">1</span>;<span class="comment">//这里非常要注意，n必须有个值否则进入不了循环。</span></span><br><span class="line">        <span class="keyword">while</span> (n)<span class="comment">//循环开始</span></span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">                <span class="keyword">if</span> (n==<span class="number">0</span>) <span class="keyword">break</span>;<span class="comment">//如果n=0那么退出</span></span><br><span class="line">                <span class="keyword">if</span> (n%<span class="number">2</span>==<span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">"Alice\n"</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"Bob\n"</span>);<span class="comment">//这个判断看上面的结论</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>我这篇题解如果有错误，那么请在评论区里留言，我将会很感谢反映的人。</p>
+<p>最后，宣传一下我的两个blog <a href="https://www.luogu.com.cn/blog/dgt/solution-p4136" target="_blank" rel="noopener">洛谷的</a>，<a href="http://localhost:4000/uncategorized/solution-p4136/" target="_blank" rel="noopener">自己的</a>，记得来玩哦！</p>
+<p><strong>谢谢观赏！</strong></p>
+]]></content>
+      <tags>
+        <tag>基础算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>高精度</title>
     <url>/uncategorized/%E9%AB%98%E7%B2%BE%E5%BA%A6/</url>
     <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>高精度作为c++里面的一种基础算法，学好它也是必然的，有很多人说高精度只要会背代码就行了。</p>
@@ -102,7 +222,7 @@
 <p>一个是<a href="https://www.luogu.org/blog/dfg/" target="_blank" rel="noopener">洛谷</a>的,但是这只是给我用,这并不是我自己的。</p>
 <p>而是洛谷名下的。</p>
 <hr>
-<p>第二个blog是大佬帮助我搭建的用<code>jekyll</code>,我觉得这个blog不好。</p>
+<p>第二个blog是大佬帮助我搭建的用<code>jekyll</code>,我觉得这个 blog 不好。</p>
 <p>一:不是我自己搭建的。</p>
 <p>二:主题很单调。</p>
 <hr>
@@ -110,10 +230,43 @@
 <p>至于我为什么搭建一个blog,那是因为我们老师说一个OIer就应该有个好的blog。</p>
 <p>还有也是我自己觉得我自己搭建的是最好的。</p>
 <hr>
-<p>我会用永远经营这个blog,我不会也不想再换别的blog,我只会完善它。</p>
+<p>我会用永远经营这个 blog ,我不会也不想再换别的 blog ,我只会完善它。</p>
+<hr>
+<p>2021:8:5 更新</p>
+<p>我回来了！</p>
+<p>这个 blog 我觉得真挺好的，不过么就是 $\LaTeX$ 比较不太友好。。。</p>
 ]]></content>
       <tags>
         <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>题解 P5716 【【深基3.例9】月份天数】</title>
+    <url>/uncategorized/solution-p5716/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>其实这题目就是一个模拟题，数组什么的都不需要，你只需要会c++基础赋值，判断，读入，输出，就可以做这题目。</p>
+<p>至于为什么要写这篇题解，那是因为，我想让初学者更好的了解思路。</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>就是给你年份和月份，输出这一年的这一月有多少天。</p>
+<p>还需要判闰年。</p>
+<h3 id="分析和解决"><a href="#分析和解决" class="headerlink" title="分析和解决"></a>分析和解决</h3><p>其实很简单</p>
+<blockquote>
+<p>1 3 5 7 8 10 12 永远是 31 天</p>
+</blockquote>
+<blockquote>
+<p>4 6 9 11 永远是 30 天</p>
+</blockquote>
+<p>最主要的就是 <strong>2月份</strong> 如果是闰年，那么就是 29 天。</p>
+<p>如果不是，那么就是 28 天。</p>
+<p>至于闰年的判断方式，就是能被 400 整除的是闰年，或者是能被 4 整除，不能被 100 整除。</p>
+<p>这个判断好了之后，100 分就到手了。</p>
+<p>如果还是不知道的或者想了解为什么有闰年的存在：</p>
+<p><del>请自行翻二年级下册的数学课本</del>，请自行百度。</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("Leap.in","r",stdin);  文件输入输出，洛谷评测器不需要，这个可以不用</span></span><br><span class="line"><span class="comment">//	freopen("Leap.out","w",stdout);</span></span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> n,m;<span class="comment">//变量设定</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld %lld"</span>,&amp;n,&amp;m);<span class="comment">//格式化输入输出，cin和cout可以替代</span></span><br><span class="line">	<span class="keyword">if</span> (m==<span class="number">1</span> || m==<span class="number">3</span> || m==<span class="number">5</span> || m==<span class="number">7</span> || m==<span class="number">8</span> || m==<span class="number">10</span> || m==<span class="number">12</span>) &#123;<span class="built_in">printf</span>(<span class="string">"31\n"</span>);<span class="keyword">return</span> <span class="number">0</span>;&#125;<span class="comment">//如上文字 1 3 5 7 8 10 12 都是31天</span></span><br><span class="line">	<span class="keyword">if</span> (m==<span class="number">4</span> || m==<span class="number">6</span> || m==<span class="number">9</span> || m==<span class="number">11</span>) &#123;<span class="built_in">printf</span>(<span class="string">"30\n"</span>);<span class="keyword">return</span> <span class="number">0</span>;&#125;<span class="comment">//如上文字 4 6 9 11都是30天</span></span><br><span class="line">	<span class="keyword">if</span> ((n%<span class="number">400</span>==<span class="number">0</span> || (n%<span class="number">4</span>==<span class="number">0</span> &amp;&amp; n%<span class="number">100</span>!=<span class="number">0</span>)) &amp;&amp; m==<span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"29\n"</span>);<span class="comment">//如果是闰年那么输出29天</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;<span class="comment">//如果是2月份那么判断，上面的文字已告诉你怎么判断</span></span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"28\n"</span>);<span class="comment">//如果不是那么输出28天</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h3><p>我这篇题解如果有错误，那么请在评论区里留言，作者将会很感谢反映的人。</p>
+]]></content>
+      <tags>
+        <tag>题解</tag>
       </tags>
   </entry>
 </search>

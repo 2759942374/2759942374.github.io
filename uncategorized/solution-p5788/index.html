@@ -103,24 +103,25 @@
 
 
 
-  <meta name="description" content="Bookmark for NexT  Introduce  Bookmark is a plugin that allow the users save their reading position. The users could just click the bookmark icon (like 🔖) in left-top of the page to save the position">
-<meta property="og:type" content="website">
-<meta property="og:title" content="fzx&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/lib/bookmark/README.html">
+  <meta name="description" content="前言单调栈的模板题目，本人是手写单调栈。 单调栈首先了解一下什么是单调栈吧！ 单调栈就是使栈内元素单调递增或者单调递减的栈，单调栈也只能在栈顶操作。 我们先来模拟一遍吧！ 做一个比喻，比方说：有个集训队招人，一个数代表了一个选手的能力值，先进来的选手年龄会比较大，后面的选手年龄比较小，但是这个集训队没有人数限制，那么如果遇到一个比你小还比你强的人那么准备退役吧。 比如有 5 个能力值分别是： 1">
+<meta name="keywords" content="题解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题解 P5788 【【模板】单调栈】">
+<meta property="og:url" content="http://yoursite.com/uncategorized/solution-p5788/index.html">
 <meta property="og:site_name" content="fzx&#39;s blog">
-<meta property="og:description" content="Bookmark for NexT  Introduce  Bookmark is a plugin that allow the users save their reading position. The users could just click the bookmark icon (like 🔖) in left-top of the page to save the position">
+<meta property="og:description" content="前言单调栈的模板题目，本人是手写单调栈。 单调栈首先了解一下什么是单调栈吧！ 单调栈就是使栈内元素单调递增或者单调递减的栈，单调栈也只能在栈顶操作。 我们先来模拟一遍吧！ 做一个比喻，比方说：有个集训队招人，一个数代表了一个选手的能力值，先进来的选手年龄会比较大，后面的选手年龄比较小，但是这个集训队没有人数限制，那么如果遇到一个比你小还比你强的人那么准备退役吧。 比如有 5 个能力值分别是： 1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T11:32:24.152Z">
+<meta property="og:updated_time" content="2020-02-23T08:00:47.522Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fzx&#39;s blog">
-<meta name="twitter:description" content="Bookmark for NexT  Introduce  Bookmark is a plugin that allow the users save their reading position. The users could just click the bookmark icon (like 🔖) in left-top of the page to save the position">
+<meta name="twitter:title" content="题解 P5788 【【模板】单调栈】">
+<meta name="twitter:description" content="前言单调栈的模板题目，本人是手写单调栈。 单调栈首先了解一下什么是单调栈吧！ 单调栈就是使栈内元素单调递增或者单调递减的栈，单调栈也只能在栈顶操作。 我们先来模拟一遍吧！ 做一个比喻，比方说：有个集训队招人，一个数代表了一个选手的能力值，先进来的选手年龄会比较大，后面的选手年龄比较小，但是这个集训队没有人数限制，那么如果遇到一个比你小还比你强的人那么准备退役吧。 比如有 5 个能力值分别是： 1">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/lib/bookmark/README.html">
+  <link rel="canonical" href="http://yoursite.com/uncategorized/solution-p5788/">
 
 
 
@@ -130,7 +131,7 @@
   };
 </script>
 
-  <title> | fzx's blog</title>
+  <title>题解 P5788 【【模板】单调栈】 | fzx's blog</title>
   
 
 
@@ -359,172 +360,245 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/uncategorized/solution-p5788/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fzx">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/main.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fzx's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-  
-  
-  <ul class="breadcrumb">
-    
-      
-      
         
+        
+          <h1 class="post-title" itemprop="name headline">题解 P5788 【【模板】单调栈】
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-23 15:53:12 / 修改时间：16:00:47" itemprop="dateCreated datePublished" datetime="2020-02-23T15:53:12+08:00">2020-02-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
           
             
           
-          <li><a href="/lib/">LIB</a></li>
-        
-      
-    
-      
-      
-        
-          <li>BOOKMARK</li>
-        
-      
-    
-      
-      
-        
+
           
-            
           
-          <li><a href="/lib/README.html/">README.HTML</a></li>
-        
-      
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
     
-  </ul>
 
-
-</div>
-
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
       
+
       
-      <div class="post-body">
-        
-        
-          <h1 align="center">Bookmark for <a href="https://github.com/theme-next" target="_blank" rel="noopener">NexT</a></h1>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>单调栈的模板题目，本人是手写单调栈。</p>
+<h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><p>首先了解一下什么是单调栈吧！</p>
+<p>单调栈就是使栈内元素单调递增或者单调递减的栈，单调栈也只能在栈顶操作。</p>
+<p>我们先来模拟一遍吧！</p>
+<p>做一个比喻，比方说：有个集训队招人，一个数代表了一个选手的能力值，先进来的选手年龄会比较大，后面的选手年龄比较小，但是这个集训队没有人数限制，那么如果遇到一个比你小还比你强的人那么准备退役吧。</p>
+<p>比如有 5 个能力值分别是：</p>
+<p>1 7 5 6 3</p>
+<p>要加进来这个单调栈。</p>
+<p>首先是 1 也就是 选手1 ，那么集训队没有人和他比较所以进入集训队。</p>
+<p>单调栈的情况：1 。</p>
+<p>然后是 7  也就是 选手2 ，那么我们可以发现，选手2 比 选手1 要小，并且 选手2 的能力比 选手1 要强，那么 选手1 留着也没啥用，淘汰！<del>好残酷呀！</del></p>
+<p>单调栈的情况：7 。</p>
+<p>然后是 5 选手3 ，选手3 比 选手2 年龄要小，但是 选手3 的能力没有 选手2 强，那么 选手3 招进集训队。</p>
+<p>单调栈的情况：7 5 。</p>
+<p>那么接下来是 6 选手4 ，选手4 比 选手3 年龄要小，比他还要强， 选手3 淘汰！往后比较，发现 选手2 虽然比 选手4 要大，但是他能力很强！所以不会被淘汰，将 选手4 招进集训队。</p>
+<p>单调栈的情况：7 6 。</p>
+<p>最后是 3 选手5 ，选手5 比 选手4 要小，但是 选手4 的能力比 选手5 要强，所以 选手4 必定也比不过 选手2 ，但由于 选手5 小所以不淘汰他。</p>
+<p>单调栈的情况：7 6 3 。</p>
+<p>通过这个模拟我们发现，<del>如果你很强，就算你年龄大也不会被淘汰</del>，其实不是这样，在单调队列(比单调栈高级的东西)里面你就算再强也终究有时候会退役的，所以好好珍惜吧！</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>刚刚解析完了单调栈，那么，现在开始分析一下这道题目吧！</p>
+<p>这道题目就是说往右边看，找出第一个(能力)大于你的数(选手)。</p>
+<p>不妨把它反过来，从最后一个开始入单调栈。</p>
+<p>如果说没有比它小的那么就是输出 0 。</p>
+<p>细节看代码吧！</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 3000005</span></span><br><span class="line"><span class="comment">//头文件+预处理名。</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,a[Inf],q[INF],r,f[INF];</span><br><span class="line"><span class="comment">//定义变量，其中a数组表示输入的数，q数组表示存下标的单调栈，f数组是存结果。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">   <span class="comment">//上面是读入。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=n; i&gt;=<span class="number">1</span>; i--) &#123;</span><br><span class="line">    <span class="comment">//从最后开始枚举。</span></span><br><span class="line">		<span class="keyword">while</span> (a[i]&gt;=a[q[r]] &amp;&amp; r&gt;<span class="number">0</span>) r--;</span><br><span class="line">    <span class="comment">//如果说它找到了比矮高的人并且不是最后，那么将那个矮的人弹掉，毕竟后面也不会有人看到它了，因为如果看到它的话那么必定可以看到比它前面的还比它高的。</span></span><br><span class="line">		f[i]=q[r];</span><br><span class="line">      <span class="comment">//存结果，因为要正向输出。</span></span><br><span class="line">		q[++r]=i;</span><br><span class="line">     <span class="comment">//将它入栈。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="built_in">printf</span>(<span class="string">"%d "</span>,f[i]);</span><br><span class="line">   <span class="comment">//最后正着输出。</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 align="center">Introduce</h2>
+<h2 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h2><p>我这篇题解如果有错误，那么请在评论区里留言，我将会很感谢反映的人。</p>
+<p>最后，宣传一下我的两个blog <a href="https://www.luogu.com.cn/blog/dgt/solution-p5788" target="_blank" rel="noopener">洛谷的</a>，<a href="https://cstdios.cf/uncategorized/solution-p5788/" target="_blank" rel="noopener">自己的</a>，记得来玩哦！</p>
+<p><strong>谢谢观赏！</strong></p>
 
-<p>Bookmark is a plugin that allow the users save their reading position.</p>
-<p>The users could just click the bookmark icon (like 🔖) in left-top of the page to save the position.</p>
-<p>And when they visit your blog in the next time, they can continue the last reading position by clicking the bookmark icon from the home page.</p>
-<h1 align="center">Installation</h1>
-
-<h2>If you want to use the CDN instead of clone this repo, please jump to the Step 3.</h2>
-
-<h2 align="center">Step 1 &rarr; Go to NexT dir</h2>
-
-<p>Change dir to <strong>NexT</strong> directory. There must be <code>layout</code>, <code>source</code>, <code>languages</code> and other directories:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/next</span><br><span class="line">$ ls</span><br><span class="line">bower.json  _config.yml  docs  gulpfile.coffee  languages  layout  LICENSE.md  package.json  README.md  scripts  <span class="built_in">source</span>  <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<h2 align="center">Step 2 &rarr; Get module</h2>
-
-<p>Install module to <code>source/lib</code> directory:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/theme-next-bookmark.git <span class="built_in">source</span>/lib/bookmark</span><br></pre></td></tr></table></figure>
-
-<h2 align="center">Step 3 &rarr; Set it up</h2>
-
-<p>Enable module in <strong>NexT</strong> <code>_config.yml</code> file:</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">bookmark:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>And, if you wants to use the CDN, then need to set:</strong></p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line"><span class="attr">  bookmark:</span> <span class="attr">https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js</span></span><br></pre></td></tr></table></figure>
-
-<h1 align="center">Update</h1>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/next/<span class="built_in">source</span>/lib/bookmark</span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
-
-
-        
-      </div>
-      
-      
       
     </div>
+
     
 
+    
+    
+    
 
+     
+       <div>
+         <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+       </div>
+     
+	
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/题解/" rel="tag"># 题解</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/uncategorized/solution-cf44a/" rel="next" title="题解 CF44A 【Indian Summer】">
+                <i class="fa fa-chevron-left"></i> 题解 CF44A 【Indian Summer】
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
   
   
-  <ul class="breadcrumb">
-    
-      
-      
-        
-          
-            
-          
-          <li><a href="/lib/">LIB</a></li>
-        
-      
-    
-      
-      
-        
-          <li>BOOKMARK</li>
-        
-      
-    
-      
-      
-        
-          
-            
-          
-          <li><a href="/lib/README.html/">README.HTML</a></li>
-        
-      
-    
-  </ul>
+  
+  </article>
 
 
-    
-    
-    
   </div>
 
 
@@ -681,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Bookmark for NexT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">Introduce</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text">If you want to use the CDN instead of clone this repo, please jump to the Step 3.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text">Step 1 → Go to NexT dir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text">Step 2 → Get module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.4.</span> <span class="nav-text">Step 3 → Set it up</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Update</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单调栈"><span class="nav-number">2.</span> <span class="nav-text">单调栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">4.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在后面的话"><span class="nav-number">5.</span> <span class="nav-text">写在后面的话</span></a></li></ol></div>
             
 
           </div>
@@ -1270,7 +1344,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 

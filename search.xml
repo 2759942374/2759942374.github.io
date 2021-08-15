@@ -216,34 +216,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我的blog</title>
-    <url>/uncategorized/%E6%88%91%E7%9A%84blog/</url>
-    <content><![CDATA[<p>这是我的第三个 blog，我之前有两个 blog。</p>
-<p>一个是<a href="https://www.luogu.org/blog/dfg/" target="_blank" rel="noopener">洛谷</a>的，但是这只是给我用，这并不是我自己的。</p>
-<hr>
-<p>第二个blog是大佬帮助我搭建的用 <code>jekyll</code> ,我觉得这个 blog 不好。</p>
-<ol>
-<li><p>不是我自己搭建的。</p>
-</li>
-<li><p>主题很单调。</p>
-</li>
-</ol>
-<hr>
-<p>然后我偶然的机会我接触到了 <code>Hexo</code> 用洛谷日报的方式方法,终于搭建了一个属于自己的blog。</p>
-<p>至于我为什么搭建一个blog,那是因为我们老师说一个OIer就应该有个好的blog。</p>
-<p>还有也是我自己觉得我自己搭建的是最好的。</p>
-<hr>
-<p>我会用永远经营这个 blog ,我不会也不想再换别的 blog ,我只会完善它。</p>
-<hr>
-<p>2021:8:5 更新</p>
-<p>我回来了！</p>
-<p>这个 blog 我觉得真挺好的，不过么就是 $\LaTeX$ 比较不太友好。。。</p>
-]]></content>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>题解 P5716 【【深基3.例9】月份天数】</title>
     <url>/uncategorized/solution-p5716/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>其实这题目就是一个模拟题，数组什么的都不需要，你只需要会c++基础赋值，判断，读入，输出，就可以做这题目。</p>
@@ -270,6 +242,34 @@
 ]]></content>
       <tags>
         <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的blog</title>
+    <url>/uncategorized/%E6%88%91%E7%9A%84blog/</url>
+    <content><![CDATA[<p>这是我的第三个 blog，我之前有两个 blog。</p>
+<p>一个是<a href="https://www.luogu.org/blog/dfg/" target="_blank" rel="noopener">洛谷</a>的，但是这只是给我用，这并不是我自己的。</p>
+<hr>
+<p>第二个blog是大佬帮助我搭建的用 <code>jekyll</code> ,我觉得这个 blog 不好。</p>
+<ol>
+<li><p>不是我自己搭建的。</p>
+</li>
+<li><p>主题很单调。</p>
+</li>
+</ol>
+<hr>
+<p>然后我偶然的机会我接触到了 <code>Hexo</code> 用洛谷日报的方式方法,终于搭建了一个属于自己的blog。</p>
+<p>至于我为什么搭建一个blog,那是因为我们老师说一个OIer就应该有个好的blog。</p>
+<p>还有也是我自己觉得我自己搭建的是最好的。</p>
+<hr>
+<p>我会用永远经营这个 blog ,我不会也不想再换别的 blog ,我只会完善它。</p>
+<hr>
+<p>2021:8:5 更新</p>
+<p>我回来了！</p>
+<p>这个 blog 我觉得真挺好的，不过么就是 $\LaTeX$ 比较不太友好。。。</p>
+]]></content>
+      <tags>
+        <tag>日记</tag>
       </tags>
   </entry>
 </search>

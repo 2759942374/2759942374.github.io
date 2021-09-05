@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>我的blog</title>
+    <url>/uncategorized/DFS%20%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>首先来看一道例题：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">给定一棵树，支持单点修改单点查询。</span><br></pre></td></tr></table></figure>
+
+<p>正常人一看，这不是傻子题，线性都可以。</p>
+<p>确实是这样的，那么我们给他加点条件。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">给定一棵树，支持链修改单点查询。</span><br></pre></td></tr></table></figure>
+
+<p>现在又如何？</p>
+<p>什么？你说上树剖？</p>
+<p>那我再来点条件：</p>
+<p>$1 \le n,q \le 10^6$。</p>
+<p>树剖即使常数再小也是两只 \log。</p>
+<p>我再来点卡常瞬间凉透。</p>
+<p>这时候我们就要学习一种新的比树剖更快的方法解决这类问题。</p>
+<p><del>你可以画一个图，反正我是懒得画了，(逃</del></p>
+<p><img src="https://sm.ms/image/p72lXVYrhHOwsL5" alt></p>
+<p>这是一棵树，假定我们要修改 5~8 的一条链。</p>
+<p>我们发现这可以拆成 $4$ 条路径，分别是 $9 \sim 5 +x$，$9 \sim 8 +x$，那么 $1 \sim 9$ 加了两次，其中 $1$ 是要加一次的，那么我们将 $1 \sim 9 -x$，然后将 $1$ 的父亲到 $9$ 减去 $x$，我们发现这样子就比较好处理了。</p>
+<p>首先可以考虑将点查询改成子树查询，那么这边就是变为了查询 $x$ 为根的子树的和，因为一条链如果要对 $x$ 产生贡献，必然是经过它，也就是在它儿子里面。</p>
+<p>具体的实现是这样的 $f[u]+x$，$f[v]+x$，$f[lca]-x$，$f[fa[lca]]-x$。</p>
+<p>然后查询区间，单点修改区间查询可以使用树状数组来维护，线段树的话常数实在是太大了。</p>
+<p>通过这道题目我们发觉，有些查询的东西，可以变化的！</p>
+<p>再来看一道题目：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">给定一棵树，支持单点修改链查询。</span><br></pre></td></tr></table></figure>
+
+<p>这个和之前那个都是一样的，改成区间修改，单点查询就可以了，更具体的，单点修改就影响了它子树里面的节点，然后你在把查询拆成 $4$ 条路径加一加减一减就可以了。</p>
+<p>接下来我们来搞点好玩的题目！</p>
+<p><a href="https://loj.ac/p/144" target="_blank" rel="noopener">题目1</a></p>
+<p>loj 的 DFS 序题目，目前我已经全部做完了。</p>
+<p>这个树状数组，查询区间和就可以了。</p>
+<p>这很简单！</p>
+<p><a href="https://loj.ac/p/145" target="_blank" rel="noopener">题目2</a></p>
+<p>这个如果使用线段树也可以过掉，但我在这里介绍一种更巧妙，常数更小，代码量也更小的树状数组写法。</p>
+<p>首先考虑用差分维护区间加，那么区间和即为：</p>
+<p>$\sum \limits _{i=l}^r \sum \limits _{j=1}^i f[j]$。</p>
+<p>这个东西实在是太难搞了，我们考虑计算 $1 \sim r$ 的总和。</p>
+<p>总和为 $\sum \limits _{j=1}^r f[j] \times (r-j+1)$。</p>
+<p>然后两个前缀和一样的东西减一减就可以了，$\sum \limits _{j=1}^r f[j] \times (r-j+1) - \sum \limits _{j=1}^l f[j] \times (l-j+1)$。</p>
+<p>这个东西出来了，我们再进一步简化刚才那个 $1 \sim r$ 的柿子。</p>
+<p>总和为 $r \times \sum \limits _{j=1}^r f[j]- \sum \limits _{j=1}^r f[j] \times(j-1)$。</p>
+<p>这个东西应该比较好维护，就维护两个树状数组一个是差分数组的区间和，一个是乘 $j-1$ 的。</p>
+<p><a href="https://paste.ubuntu.com/p/gqYFn687xN/" target="_blank" rel="noopener">code</a></p>
+<p>可以催更 (雾</p>
+<p>反正要咕咕咕了。</p>
+]]></content>
+      <tags>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LCA 求法的整理</title>
     <url>/uncategorized/LCA/</url>
     <content><![CDATA[<p>关于 LCA 这东西太平常了 …… 这里就给出几种做法！！</p>
@@ -257,6 +309,34 @@
       </tags>
   </entry>
   <entry>
+    <title>我的blog</title>
+    <url>/uncategorized/%E6%88%91%E7%9A%84blog/</url>
+    <content><![CDATA[<p>这是我的第三个 blog，我之前有两个 blog。</p>
+<p>一个是<a href="https://www.luogu.org/blog/dfg/" target="_blank" rel="noopener">洛谷</a>的，但是这只是给我用，这并不是我自己的。</p>
+<hr>
+<p>第二个blog是大佬帮助我搭建的用 <code>jekyll</code> ,我觉得这个 blog 不好。</p>
+<ol>
+<li><p>不是我自己搭建的。</p>
+</li>
+<li><p>主题很单调。</p>
+</li>
+</ol>
+<hr>
+<p>然后我偶然的机会我接触到了 <code>Hexo</code> 用洛谷日报的方式方法,终于搭建了一个属于自己的blog。</p>
+<p>至于我为什么搭建一个blog,那是因为我们老师说一个OIer就应该有个好的blog。</p>
+<p>还有也是我自己觉得我自己搭建的是最好的。</p>
+<hr>
+<p>我会用永远经营这个 blog ,我不会也不想再换别的 blog ,我只会完善它。</p>
+<hr>
+<p>2021:8:5 更新</p>
+<p>我回来了！</p>
+<p>这个 blog 我觉得真挺好的，不过么就是 $\LaTeX$ 比较不太友好。。。</p>
+]]></content>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>题解 P5716 【【深基3.例9】月份天数】</title>
     <url>/uncategorized/solution-p5716/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>其实这题目就是一个模拟题，数组什么的都不需要，你只需要会c++基础赋值，判断，读入，输出，就可以做这题目。</p>
@@ -283,34 +363,6 @@
 ]]></content>
       <tags>
         <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的blog</title>
-    <url>/uncategorized/%E6%88%91%E7%9A%84blog/</url>
-    <content><![CDATA[<p>这是我的第三个 blog，我之前有两个 blog。</p>
-<p>一个是<a href="https://www.luogu.org/blog/dfg/" target="_blank" rel="noopener">洛谷</a>的，但是这只是给我用，这并不是我自己的。</p>
-<hr>
-<p>第二个blog是大佬帮助我搭建的用 <code>jekyll</code> ,我觉得这个 blog 不好。</p>
-<ol>
-<li><p>不是我自己搭建的。</p>
-</li>
-<li><p>主题很单调。</p>
-</li>
-</ol>
-<hr>
-<p>然后我偶然的机会我接触到了 <code>Hexo</code> 用洛谷日报的方式方法,终于搭建了一个属于自己的blog。</p>
-<p>至于我为什么搭建一个blog,那是因为我们老师说一个OIer就应该有个好的blog。</p>
-<p>还有也是我自己觉得我自己搭建的是最好的。</p>
-<hr>
-<p>我会用永远经营这个 blog ,我不会也不想再换别的 blog ,我只会完善它。</p>
-<hr>
-<p>2021:8:5 更新</p>
-<p>我回来了！</p>
-<p>这个 blog 我觉得真挺好的，不过么就是 $\LaTeX$ 比较不太友好。。。</p>
-]]></content>
-      <tags>
-        <tag>日记</tag>
       </tags>
   </entry>
 </search>
